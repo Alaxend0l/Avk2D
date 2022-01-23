@@ -1,12 +1,9 @@
-include(./.env.cmake OPTIONAL RESULT_VARIABLE LOCAL_ENV)
-message(STATUS "Local .env.cmake: ${LOCAL_ENV}")
- 
 cmake_minimum_required(VERSION 3.11.0)
  
 set(NAME Avk2D)
 
-set(GLFW_PATH "third_party/glfw")
-set(GLM_PATH "third_party/glm")
+set(GLFW_PATH "${CMAKE_SOURCE_DIR}/third_party/glfw")
+set(GLM_PATH "${CMAKE_SOURCE_DIR}/third_party/glm")
  
 message(STATUS "using ${CMAKE_GENERATOR}")
 if (CMAKE_GENERATOR STREQUAL "MinGW Makefiles")
