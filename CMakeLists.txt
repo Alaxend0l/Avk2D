@@ -36,19 +36,13 @@ endif()
  
  
 # 2. Set GLFW_PATH in .env.cmake to target specific glfw
-if (DEFINED GLFW_PATH)
-  message(STATUS "Using GLFW path specified in .env")
-  set(GLFW_INCLUDE_DIRS "${GLFW_PATH}/include")
-  if (MSVC)
-    set(GLFW_LIB "${GLFW_PATH}/lib-vc2019") # 2.1 Update lib-vc2019 to use same version as your visual studio
-  elseif (CMAKE_GENERATOR STREQUAL "MinGW Makefiles")
-    message(STATUS "USING MINGW")
-    set(GLFW_LIB "${GLFW_PATH}/lib-mingw-w64") # 2.1 make sure matches glfw mingw subdirectory
-  endif()
+if (WIN32)
 else()
-  set(GLFW_LIB third_party/glfw)
-  message(STATUS "Found GLFW")
+  find_package(glfw3 3.3 REQUIRED)
 endif()
+set(GLFW_LIB third_party/glfw)
+message(STATUS "Found GLFW")
+
 if (NOT GLFW_LIB)
     message(FATAL_ERROR "Could not find glfw library!")
 else()
