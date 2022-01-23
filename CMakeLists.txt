@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.11.0)
  
 set(NAME Avk2D)
 
-set(GLFW_PATH "${CMAKE_SOURCE_DIR}/third_party/glfw")
+#set(GLFW_PATH "${CMAKE_SOURCE_DIR}/third_party/glfw")
 set(GLM_PATH "${CMAKE_SOURCE_DIR}/third_party/glm")
  
 message(STATUS "using ${CMAKE_GENERATOR}")
@@ -100,6 +100,7 @@ elseif (UNIX)
     message(STATUS "CREATING BUILD FOR UNIX")
     target_include_directories(${PROJECT_NAME} PUBLIC
       ${PROJECT_SOURCE_DIR}/source
+      ${Vulkan_INCLUDE_DIRS}
       ${TINYOBJ_PATH}
     )
     target_link_libraries(${PROJECT_NAME} glfw ${Vulkan_LIBRARIES})
