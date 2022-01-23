@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.11.0)
 set(NAME Avk2D)
 
 if (WIN32)
-  set(GLFW_PATH ${CMAKE_SOURCE_DIR}/third_party/glfw3)
+  set(GLFW_PATH "${CMAKE_SOURCE_DIR}/third_party/glfw")
 endif()
 set(GLM_PATH "${CMAKE_SOURCE_DIR}/third_party/glm")
  

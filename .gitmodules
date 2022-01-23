@@ -1,5 +1,5 @@
-[submodule "third_party/glfw3"]
-	path = third_party/glfw3
+[submodule "third_party/glfw"]
+	path = third_party/glfw
 	url = https://github.com/glfw/glfw
 [submodule "third_party/glm"]
 	path = third_party/glm
