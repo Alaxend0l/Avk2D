@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.11.0)
 set(NAME Avk2D)
 
 if (WIN32)
-  set(GLFW_PATH "${CMAKE_SOURCE_DIR}/third_party/glfw")
+  add_subdirectory("third_party/glfw")
 endif()
 set(GLM_PATH "${CMAKE_SOURCE_DIR}/third_party/glm")
  
@@ -46,8 +46,7 @@ if (DEFINED GLFW_PATH)
     set(GLFW_LIB "${GLFW_PATH}/lib-mingw-w64") # 2.1 make sure matches glfw mingw subdirectory
   endif()
 else()
-  find_package(glfw3 3.3 REQUIRED)
-  set(GLFW_LIB glfw)
+  set(GLFW_LIB third_party/glfw)
   message(STATUS "Found GLFW")
 endif()
 if (NOT GLFW_LIB)
@@ -92,12 +91,7 @@ if (WIN32)
     ${GLM_PATH}
     )
  
-  target_link_directories(${PROJECT_NAME} PUBLIC
-    ${Vulkan_LIBRARIES}
-    ${GLFW_LIB}
-  )
- 
-  target_link_libraries(${PROJECT_NAME} glfw3 vulkan-1)
+  target_link_libraries(${PROJECT_NAME} glfw ${Vulkan_LIBRARIES})
 elseif (UNIX)
     message(STATUS "CREATING BUILD FOR UNIX")
     target_include_directories(${PROJECT_NAME} PUBLIC

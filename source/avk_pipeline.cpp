@@ -8,8 +8,14 @@
 #include <iostream>
 #include <cassert>
 
-#ifndef ENGINE_DIR
-#define ENGINE_DIR "../"
+#ifdef _WIN32
+	#ifndef ENGINE_DIR
+		#define ENGINE_DIR "../../"
+	#endif
+#else
+	#ifndef ENGINE_DIR
+		#define ENGINE_DIR "../"
+	#endif
 #endif
 
 namespace avk
