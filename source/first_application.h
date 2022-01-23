@@ -1,9 +1,12 @@
 #pragma once
 
-#include "avk_window.h"
-#include "avk_device.h"
-#include "avk_entity.h"
-#include "avk_renderer.h"
+#include "core/avk_window.h"
+#include "core/avk_device.h"
+#include "core/avk_renderer.h"
+#include "core/avk_model.h"
+
+#include "scene/avk_entity.h"
+
 
 // std
 
@@ -27,12 +30,11 @@ namespace avk
 		void run();
 
 	private:
-		void loadEntities();
+		void LoadEntities(std::shared_ptr<AvkScene>& scene);
 
 		AvkWindow avkWindow{ WIDTH, HEIGHT, "Avk Hello World!" };
 		AvkDevice avkDevice{ avkWindow };
 		AvkRenderer avkRenderer {avkWindow, avkDevice};
-
-		std::vector<AvkEntity> entities;
+		std::shared_ptr<AvkScene> avkScene;
 	};
 }

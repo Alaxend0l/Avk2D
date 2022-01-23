@@ -1,8 +1,8 @@
 #pragma once
 
-#include "avk_window.h"
-#include "avk_device.h"
-#include "avk_swap_chain.h"
+#include "core/avk_window.h"
+#include "core/avk_device.h"
+#include "core/avk_swap_chain.h"
 
 // std
 

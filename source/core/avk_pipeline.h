@@ -1,6 +1,6 @@
 #pragma once
 
-#include "avk_device.h"
+#include "core/avk_device.h"
 
 #include <string>
 #include <vector>

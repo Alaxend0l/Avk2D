@@ -1,4 +1,4 @@
-#include "avk_renderer.h"
+#include "core/avk_renderer.h"
 
 // std
 

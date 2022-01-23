@@ -1,4 +1,4 @@
-#include "simple_render_system.h"
+#include "render/simple_render_system.h"
 
 // libs
 #define GLM_FORCE_RADIANS
@@ -72,22 +72,27 @@ namespace avk
 			);
 	}
 
-	void SimpleRenderSystem::renderEntities(VkCommandBuffer commandBuffer, std::vector<AvkEntity> &entities)
+	void SimpleRenderSystem::RenderScene(VkCommandBuffer commandBuffer, AvkScene& scene)
 	{
 		avkPipeline->bind(commandBuffer);
 
-		for (auto& ent: entities)
-		{
-			ent.transform2d.rotation += 0.01f;
+		auto view = scene.GetRegistry().view<Transform2D, std::shared_ptr<AvkModel>>();
 
+		for (auto [entity, transform, model]: view.each())
+		{
 			SimplePushConstantData push{};
-			push.offset = ent.transform2d.translation;
-			push.color = ent.color;
-			push.transform = ent.transform2d.mat2();
+			push.offset = transform.position;
+			push.color = {1.f, 0.f, 1.f};
+			push.transform = transform.mat2();
 
 			vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT, 0, sizeof(SimplePushConstantData), &push);
-			ent.model->bind(commandBuffer);
-			ent.model->draw(commandBuffer);
+
+			if (model != NULL)
+			{
+				model->bind(commandBuffer);
+				model->draw(commandBuffer);
+			}
+			
 		}
 	}
 }

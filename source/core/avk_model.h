@@ -1,6 +1,6 @@
 #pragma once
 
-#include "avk_device.h"
+#include "core/avk_device.h"
 
 // libs
 #define GLM_FORCE_RADIANS
@@ -27,8 +27,8 @@ namespace avk
 		AvkModel(AvkDevice &device, const std::vector<Vertex>& vertices);
 		~AvkModel();
 
-		AvkModel(const AvkModel&) = delete;
-		AvkModel& operator=(const AvkModel&) = delete;
+		//AvkModel(const AvkModel&) = delete;
+		//AvkModel& operator=(const AvkModel&) = delete;
 
 		void bind(VkCommandBuffer commandBuffer);
 		void draw(VkCommandBuffer commandBuffer);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "avk_window.h"
+#include "core/avk_window.h"
 
 // std lib headers
 #include <string>

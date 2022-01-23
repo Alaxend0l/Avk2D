@@ -1,8 +1,10 @@
 #pragma once
 
-#include "avk_pipeline.h"
-#include "avk_device.h"
-#include "avk_entity.h"
+#include "core/avk_pipeline.h"
+#include "core/avk_device.h"
+#include "core/avk_model.h"
+#include "scene/avk_entity.h"
+#include "scene/avk_component.h"
 
 // std
 
@@ -21,7 +23,7 @@ namespace avk
 		SimpleRenderSystem(const SimpleRenderSystem&) = delete;
 		SimpleRenderSystem& operator=(const SimpleRenderSystem&) = delete;
 
-        void renderEntities(VkCommandBuffer commandBuffer, std::vector<AvkEntity> &entities);
+        void RenderScene(VkCommandBuffer commandBuffer, AvkScene& scene);
 
 	private:
 		void createPipelineLayout();

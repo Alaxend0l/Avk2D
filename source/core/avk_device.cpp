@@ -1,4 +1,4 @@
-#include "avk_device.h"
+#include "core/avk_device.h"
 
 // std headers
 #include <cstring>

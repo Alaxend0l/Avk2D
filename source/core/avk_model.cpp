@@ -1,4 +1,4 @@
-#include "avk_model.h"
+#include "core/avk_model.h"
 
 // std
 #include <cassert>
