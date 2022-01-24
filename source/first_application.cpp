@@ -58,9 +58,9 @@ namespace avk
 	{
 		std::vector<AvkModel::Vertex> vertices {};
 
-		vertices.push_back({ {-0.5f, 0.5f} , {1.0f, 0.0f, 0.0f} });
+		vertices.push_back({ {-0.5f, -0.5f} , {1.0f, 0.0f, 0.0f} });
 		vertices.push_back({ {0.5f, 0.5f} , {0.0f, 1.0f, 0.0f} });
-		vertices.push_back({ {0.0f, -0.5f} , {0.0f, 0.0f, 1.0f} });
+		vertices.push_back({ {0.5f, -0.5f} , {0.0f, 0.0f, 1.0f} });
 
 		auto avkModel = std::make_shared <AvkModel> (avkDevice, vertices);
 
@@ -68,8 +68,8 @@ namespace avk
 		auto &transform = triangle.GetComponent<Transform2D>();
 		triangle.AddComponent<std::shared_ptr<AvkModel>>(avkModel);
 		//triangle.color = {.1f, .8f, .1f};
-		transform.position.x = .2;
-		transform.scale = {2.f, 0.5f};
-		transform.rotation = 0.25f * glm::two_pi<float>();
+		// transform.position.x = .2;
+		transform.scale = {1.0f, 1.0f};
+		// transform.rotation = 0.25f * glm::two_pi<float>();
 	}
 }
