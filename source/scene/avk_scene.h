@@ -12,7 +12,7 @@ namespace avk
         AvkScene();
         ~AvkScene();
 
-        AvkEntity CreateEntity(const std::string& name = std::string());
+        AvkEntity CreateEntity(const std::string& name);
         void DestroyEntity(AvkEntity entity);
 
         //void OnUpdateRuntime(float dt);
