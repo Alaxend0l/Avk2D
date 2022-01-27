@@ -1,6 +1,6 @@
 #pragma once
 
-// #include "lib/avk_camera.h"
+#include "core/avk_camera.h"
 
 // lib
 
@@ -13,7 +13,7 @@ namespace avk
         int frameIndex;
         float frameTime;
         VkCommandBuffer commandBuffer;
-        //AvkCamera& camera;
+        AvkCamera& camera;
         VkDescriptorSet globalDescriptorSet;
     };
 }

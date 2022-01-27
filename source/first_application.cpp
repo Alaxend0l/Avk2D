@@ -82,6 +82,7 @@ namespace avk
 		//AvkLayer_Hierarchy hierarchyWindow{avkScene};
 
 		SimpleRenderSystem simpleRenderSystem{avkDevice, avkRenderer.getSwapChainRenderPass()};
+		AvkCamera camera{};
 
 		auto currentTime = std::chrono::high_resolution_clock::now();
 
@@ -98,6 +99,8 @@ namespace avk
 			// Update the camera to set the projection matrix based on the window aspect ratio.
 			float aspect = avkRenderer.getAspectRatio();
 
+			camera.setOrthographicProjection(-aspect, aspect, -1, 1, -1, 1);
+
 			// Draw game using avkRenderer
 			if (auto commandBuffer = avkRenderer.beginFrame())
 			{
@@ -106,13 +109,13 @@ namespace avk
 					frameIndex,
 					deltaTime,
 					commandBuffer,
-					//camera,
+					camera,
 					globalDescriptorSets[frameIndex]
 				};
 
 				//update
 				GlobalUbo ubo{};
-				//ubo.projectionView = camera.getProjection() * camera.getView();
+				ubo.projectionView = camera.getProjection() * camera.getView();
 				uboBuffers[frameIndex]->writeToBuffer(&ubo);
 				uboBuffers[frameIndex]->flush();
 
