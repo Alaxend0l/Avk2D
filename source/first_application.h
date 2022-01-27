@@ -3,7 +3,7 @@
 #include "core/avk_window.h"
 #include "core/avk_device.h"
 #include "core/avk_renderer.h"
-#include "core/avk_model.h"
+#include "core/avk_descriptors.h"
 
 #include "scene/avk_entity.h"
 
@@ -31,10 +31,14 @@ namespace avk
 
 	private:
 		void LoadEntities(std::shared_ptr<AvkScene>& scene);
+		void DrawMenuBar();
 
 		AvkWindow avkWindow{ WIDTH, HEIGHT, "Avk Hello World!" };
 		AvkDevice avkDevice{ avkWindow };
 		AvkRenderer avkRenderer {avkWindow, avkDevice};
 		std::shared_ptr<AvkScene> avkScene;
+
+		std::unique_ptr<AvkDescriptorPool> globalPool{};
+
 	};
 }

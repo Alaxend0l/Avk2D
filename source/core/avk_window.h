@@ -23,6 +23,7 @@ namespace avk
 
 		void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
 
+		GLFWwindow *getGLFWWindow() { return window; }
 	private:
 		static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
 		void initWindow();

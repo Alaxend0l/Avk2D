@@ -41,6 +41,10 @@ namespace avk
             return currentFrameIndex;
         }
 
+        uint32_t getImageCount() const { return static_cast<uint32_t>(avkSwapChain->imageCount()); }
+
+        float getAspectRatio() const { return avkSwapChain->extentAspectRatio();}
+
         VkCommandBuffer beginFrame();
         void endFrame();
 

@@ -6,6 +6,8 @@ if (WIN32)
   add_subdirectory("third_party/glfw")
 endif()
 set(GLM_PATH "${CMAKE_SOURCE_DIR}/third_party/glm")
+set(VMA_PATH "${CMAKE_SOURCE_DIR}/third_party/vma")
+set(IMGUI_DIR "${CMAKE_SOURCE_DIR}/third_party/imgui")
  
 message(STATUS "using ${CMAKE_GENERATOR}")
 if (CMAKE_GENERATOR STREQUAL "MinGW Makefiles")
@@ -56,10 +58,18 @@ if (NOT TINYOBJ_PATH)
   message(STATUS "TINYOBJ_PATH not specified in .env.cmake, using external/tinyobjloader")
   set(TINYOBJ_PATH external/tinyobjloader)
 endif()
- 
+
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/source/*.cpp)
+file(GLOB IMGUI_SOURCES ${IMGUI_DIR}/*.cpp ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp ${IMGUI_DIR}/backends/imgui_impl_vulkan.cpp) 
+
+add_library("ImGui" STATIC ${IMGUI_SOURCES})
+target_include_directories("ImGui" PUBLIC ${IMGUI_DIR} ${Vulkan_INCLUDE_DIRS})
+target_link_libraries("ImGui" PUBLIC glfw ${Vulkan_LIBRARIES})
  
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES}
+)
+
+
  
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
  
@@ -71,6 +81,7 @@ if (WIN32)
   if (USE_MINGW)
     target_include_directories(${PROJECT_NAME} PUBLIC
       ${MINGW_PATH}/include
+
     )
     target_link_directories(${PROJECT_NAME} PUBLIC
       ${MINGW_PATH}/lib
@@ -83,9 +94,10 @@ if (WIN32)
     ${TINYOBJ_PATH}
     ${GLFW_INCLUDE_DIRS}
     ${GLM_PATH}
+    ${IMGUI_DIR}
     )
  
-  target_link_libraries(${PROJECT_NAME} glfw ${Vulkan_LIBRARIES})
+  target_link_libraries(${PROJECT_NAME} glfw ${Vulkan_LIBRARIES} "ImGui")
 elseif (UNIX)
     message(STATUS "CREATING BUILD FOR UNIX")
     target_include_directories(${PROJECT_NAME} PUBLIC
